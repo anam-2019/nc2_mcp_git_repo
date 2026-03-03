@@ -96,15 +96,15 @@ tail -f /var/log/ovn/ovn-controller.log
 ### Connectivity Tests
 
 ```bash
-nc -zv x.x.x.x 6652
-netstat -anlp | grep 6652
+netstat -anlp | grep cloudnet
+nc -zv x.x.x.x <cloudnet port no>
 ```
 
 ### Packet Capture (Traffic Debugging)
 
 ```bash
-tcpdump -i eth2 -nne host 10.0.1.132 -Q out
-tcpdump -i eth2 -nne host 10.0.1.132 -Q in
+tcpdump -i eth2 -nne host x.x.x.x -Q out
+tcpdump -i eth2 -nne host x.x.x.x -Q in
 ```
 
 Packet from PC to VPN gateway FIP: verify traffic exiting eth2 (br0.uvms) and entering eth1 (attached to brOverlay0).
